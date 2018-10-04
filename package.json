@@ -1,0 +1,20 @@
+{
+  "name": "synchronizer_token_pattern",
+  "version": "1.0.0",
+  "description": "SSD Assignment 1 - Synchronizer Token Pattern",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "author": "Rushan Silva",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.3",
+    "crypto": "^1.0.1",
+    "eslint": "^5.6.1",
+    "express": "^4.16.3",
+    "nodemon": "^1.18.4"
+  }
+}

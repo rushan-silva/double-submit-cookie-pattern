@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Contact V15</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+<!--===============================================================================================-->
+</head>
+<script>
+		function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\\$&');
+            let regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, ' '));
+        }
+
+		window.addEventListener('load', function() {
+			let errorElement = document.getElementById("error-msg");
+            let successElement = document.getElementById("success-msg");
+            if (getParameterByName("success") && getParameterByName("success") === "false"){
+                errorElement.style.visibility = "visible" ;
+            } else if (getParameterByName("success") && getParameterByName("success") === "true"){
+				successElement.style.visibility = "visible" ;
+            } else {
+                successElement.style.visibility = "hidden";
+                errorElement.style.visibility = "hidden" ;
+			}
+			setCsrfToken()
+		})
+
+		function setCsrfToken() {
+			$("#amount").after('<input type="hidden" name="csrf" value="'+getCookie('csrfToken')+'">');
+		}
+
+		function getCookie(cname)
+		{
+			const name = cname + "=";
+			const decodedCookie = decodeURIComponent(document.cookie);
+			const ca = decodedCookie.split(';');
+			for(let i = 0; i <ca.length; i++) {
+				let c = ca[i];
+				while (c.charAt(0) == ' ') {
+					c = c.substring(1);
+				}
+				if (c.indexOf(name) == 0) {
+					return c.substring(name.length, c.length);
+				}
+			}
+			return "";
+		}
+	</script>
+<body>
+
+
+	<div class="container-contact100">
+		<!-- <div class="contact100-map" id="google_map" data-map-x="40.722047" data-map-y="-73.986422" data-pin="images/icons/map-marker.png" data-scrollwhell="0" data-draggable="1"></div> -->
+
+		<div class="wrap-contact100">
+			<div class="contact100-form-title" style="background-image: url(images/bg-01.jpg);">
+				<span class="contact100-form-title-1">
+					Make Donation
+				</span>
+
+				<span class="contact100-form-title-2">
+					No one is useless in this world who lightens the burdens of another!
+				</span>
+			</div>
+
+			<form class="contact100-form validate-form" action="/user/make-donation" method="post">
+				<div class="wrap-input100 validate-input" data-validate="Name is required">
+					<span class="label-input100">Full Name:</span>
+					<input class="input100" type="text" name="name" placeholder="Enter full name">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+					<span class="label-input100">Email:</span>
+					<input class="input100" type="text" name="email" placeholder="Enter email addess">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate="Phone is required">
+					<span class="label-input100">Phone:</span>
+					<input class="input100" type="text" name="phone" placeholder="Enter phone number">
+					<span class="focus-input100"></span>
+				</div>
+
+				<div class="wrap-input100 validate-input" data-validate = "Message is required">
+					<span class="label-input100">Amount:</span>
+					<input class="input100" type="text" name="amount" id="amount" placeholder="Enter Funding Amount">
+					<span class="focus-input100"></span>
+				</div>
+
+				<!-- <div class="my-notify-success" id="success-msg" style="visibility: hidden">This CSRF Token is Valid</div> -->
+				<!-- <div class="my-notify-warning" id="error-msg" style="visibility: hidden">This CSRF Token is Invalid</div> -->
+
+				<div class="container-contact100-form-btn" id="submit-btn">
+					<button class="contact100-form-btn">
+						<span>
+							Submit
+							<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+						</span>
+					</button>
+				</div>
+
+				<div class="isa_success" id="success-msg" style="visibility: hidden">
+					<i class="fa fa-check"></i>
+					Replace this text with your own text.
+			   </div>
+
+			   <div class="isa_error" id="error-msg" style="visibility: hidden">
+					<i class="fa fa-times-circle"></i>
+					Replace this text with your own text.
+				</div>
+				
+			</form>
+		</div>
+	</div>
+
+
+
+	<div id="dropDownSelect1"></div>
+
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/animsition/js/animsition.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/daterangepicker/moment.min.js"></script>
+	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/countdowntime/countdowntime.js"></script>
+<!--===============================================================================================-->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKFWBqlKAGCeS1rMVoaNlwyayu0e0YRes"></script>
+	<script src="js/map-custom.js"></script>
+<!--===============================================================================================-->
+	<script src="js/main.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-23581568-13');
+	</script>
+
+</body>
+</html>
