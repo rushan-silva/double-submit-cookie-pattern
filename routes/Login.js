@@ -14,17 +14,13 @@ Router.post('/authenticate', (req, res) => {
         const csrfToken = generateCSRFToken(sessionId, salt);
         res.cookie('sessionId', sessionId, { maxAge: 900000, httpOnly: false });
         res.cookie('csrfToken', csrfToken, { maxAge: 900000, httpOnly: false });
-        // res.json({ success: true, message: 'User Successfully Logged In' });
         res.redirect('/app/make-donation');
     } else {
-        // res.json({ success: false, message: 'Incorrect User Credentials' });
         res.redirect('/login-error');
     }
 });
 
 Router.post('/make-donation', (req, res) => {
-    console.log('cookie: ', req.cookies.csrfToken);
-    console.log('body: ', req.body.csrf);
     if (sessionId === req.cookies.sessionId && req.cookies.csrfToken === req.body.csrf) {
         res.redirect('/app/make-donation?success=true');
     } else {
